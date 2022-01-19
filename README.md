@@ -23,9 +23,12 @@ mamba install -c conda-forge seaborn
 3. Clone the repository and enter the directory where files are stored:
 
 ```
-
+#make a convenient place to store the repository, e.g.:
+mkdir ~/github ; cd ~/github
+git clone git@github.com:jcmcnch/DARWIN-ASV-plots.git
+cd DARWIN-ASV-plots
 ```
 
-4. Open jupyter with the command `jupyter-notebook`. This should open an interactive window in your default web browser that shows the files contained in the repository.
+4. Open jupyter with the command `jupyter-notebook`. This should open an interactive window in your default web browser that shows the files contained in the repository. Click on the "ipynb" file to open the interactive plotting interface. If it asks about a python3 kernel, just click "OK".
 
-
+5. Test whether the plots work by clicking on one of the cells, and then pressing "CTRL-Enter" on your keyboard to run the code in that cell. It should generate a subfolder with today's date that contains plots.
