@@ -32,3 +32,31 @@ cd DARWIN-ASV-plots
 4. Open jupyter with the command `jupyter-notebook`. This should open an interactive window in your default web browser that shows the files contained in the repository. Click on the "ipynb" file to open the interactive plotting interface. If it asks about a python3 kernel, just click "OK".
 
 5. Test whether the plots work by clicking on one of the cells, and then pressing "CTRL-Enter" on your keyboard to run the code in that cell. It should generate a subfolder with today's date that contains plots.
+
+## Extending this framework to new datasets, using existing classifications
+
+The point of these scripts is to allow us to make ecologically or model-relvant annotations of taxonomy and/or ASV sequence types (probably both will be needed in the end). To this end, I've written up a couple of very basic python scripts to automate this.
+
+### Input for scripts
+
+One of the following:
+
+1. A TSV file with the first column representing the taxonomy string of interest, and several columns afterwards that indicate some ecologically-relevant parameters and references (this format is ad-hoc at the moment and can be changed or added to as we see fit). For examples, check the directory `model-classification/plain-taxonomy/`.
+
+2. A TSV file with the first column representing the ASV hashes of the organisms you've classified manually. For an example of this, read on.
+
+How to use these python scripts:
+
+First off, make sure you're in an environment with `python3` installed (the `jupyter-env` specified above should work well).
+
+A) Using just taxonomy:
+
+```
+scripts/classify-using-prev-data-plain-taxonomy-input.py model-classification/plain-taxonomy/GA03-classifications-based-on-GP13.tsv example-data/210420_GA03_proportions_reordered.tsv > 210420_GA03_proportions_reordered.model-classifications.tsv
+``` 
+
+This takes the taxonomy information contained in the file in the `model-classification/plain-taxonomy/` folder and appends this information to the ASV table you specify as input, creating an amended ASV table with those new columns added in between the `taxonomy` column and the ASV counts (i.e. the file `210420_GA03_proportions_reordered.model-classifications.tsv`).
+
+B) Using the ASV hashes (which has clear advantages since we could make a truly customized taxonomy for misclassified "corner cases", e.g. some cyanobacteria that might be incorrectly classified by `qiime2`):
+
+
