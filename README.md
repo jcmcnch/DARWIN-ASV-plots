@@ -59,4 +59,18 @@ This takes the taxonomy information contained in the file in the `model-classifi
 
 B) Using the ASV hashes (which has clear advantages since we could make a truly customized taxonomy for misclassified "corner cases", e.g. some cyanobacteria that might be incorrectly classified by `qiime2`):
 
+First, let's make a ASV directory from the output file we just created:
 
+```
+cut -f 1-5 210420_GA03_proportions_reordered.model-classifications.tsv > model-classification/GA03-GP13_classifications.tsv 
+```
+
+Now the idea would be to use this classification (or the previous taxonomy-only one) for new cruise data. If you want to use the data you just produced, you just need to run the other script, e.g.:
+
+```
+scripts/classify-using-prev-data.py model-classification/GA03-GP13_classifications.tsv <your new table>.tsv > annotated.tsv
+```
+
+At this stage you'll have a table that follows the custom taxonomic annotations (either from just taxonomy strings or ASV hashes).
+
+The next steps I haven't automated at all. I just did it in excel to generate the data used in the folder `plot-input`.
